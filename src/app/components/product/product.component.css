@@ -1,0 +1,28 @@
+#col{
+    background-color: rgb(165, 165, 165);
+    
+}
+ul li a{
+    color: white;
+    
+}
+
+#close{
+    margin-top: auto;
+}
+#colors{
+    color: black;
+}
+.forms{
+    align-content: center;
+    text-align: center;
+}
+.form-control{
+    width: 90%;
+}
+#pro{
+    top: -9px;
+}
+.imgpro{
+    margin-top: -16px;
+}

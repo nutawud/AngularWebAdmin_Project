@@ -1,0 +1,44 @@
+<!-- <div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="http://clipartist.net/links/clipartist.net/orange_icon_tweet-555px.png"
+        />
+        <p id="profile-name" class="profile-name-card">วิสาหกิจชุมชน ตำบลแม่ใส</p>
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate class="log">
+
+            <input placeholder="อีเมล" formControlName="email" type="email" class="form-control" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+
+            <input placeholder="รหัสผ่าน" formControlName="password" type="password" class="form-control" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
+            <br>
+            <button class="btn btn-md btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">
+                <p class="text">เข้าสู่ระบบ</p>
+            </button>
+        </form>
+    </div>
+
+</div> -->
+
+<div class="wrapper fadeInDown" >
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> เข้าสู่ระบบ </h2>
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+        </div>
+
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate class="log">
+
+            <input placeholder="อีเมล" formControlName="email" type="email" class="form-control" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+
+            <input placeholder="รหัสผ่าน" formControlName="password" type="password" class="form-control" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
+            <br><br>
+            <button class="btn btn-md btn-primary" type="submit" [disabled]="!loginForm.valid">
+                <p class="login">เข้าสู่ระบบ</p>
+            </button>
+        </form><br>
+        <!-- Remind Passowrd -->
+        
+
+    </div>
+</div>

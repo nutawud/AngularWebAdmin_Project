@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<a class="nav-link" href="" [routerLink]="['/listuser']">กลับ</a>
+
+<div class="card container">
+    <ul class="list-group list-group-flush " *ngFor="let or of wiki">
+        <!-- <li class="list-group-item">วันที่ : {{or.date}} เวลา : {{or.time | date:'HH:mm:ss'}}</li> -->
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col">
+                    วันที่ : {{or.dateday}}/{{or.datemonth}}/{{or.dateyear}}
+                </div>
+                <div class="col">
+                    เวลา : {{or.time | date:'HH:mm:ss'}}
+                </div>
+                
+                <div class="col">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" (click)="gotolistorder(or)">
+                        ดูรายการสินค้า
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">รายการสินค้า</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body card">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" *ngFor="let total of listtotal">
+                                            การจัดส่ง : {{total.delivery}} {{total.delivery2}}
+                                            <br> เวลารับสินค้า : {{total.timeout}} น.
+                                            <br> รวม : {{total.total}} บาท
+                                        </li>
+                                        <li class="list-group-item" *ngFor="let lis of list ">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <img src="{{lis.photo}}" width="70px;">
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5>{{lis.name}}</h5>
+                                                        ราคา : {{lis.price}} บาท/กิโลกรัม
+                                                        <br> จำนวน : {{lis.count}} กิโลกรัม
+                                                    </div>
+                                                    <div>
+                                                        {{lis.price * lis.count * 1 | number : '1.2-2'}} THB
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+<br>
+<br>

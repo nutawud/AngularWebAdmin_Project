@@ -1,0 +1,699 @@
+<app-navbar></app-navbar>
+
+<ul class="nav nav-tabs justify-content-center  nav-justified" role="tablist">
+  <li class="nav-item">
+    <a id="colors" class="nav-link active" data-toggle="tab" role="tab" href="#pak">ผัก</a>
+  </li>
+  <li class="nav-item">
+    <a id="colors" class="nav-link" data-toggle="tab" role="tab" href="#puy">ปุ๋ย</a>
+  </li>
+  <li class="nav-item">
+    <a id="colors" class="nav-link" data-toggle="tab" role="tab" href="#other">อื่นๆ</a>
+  </li>
+</ul> 
+
+<div class="tab-content container">
+  <div class="tab-pane active" id="pak" role="tabpanel">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+      <div class="col">
+        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modal1 ">
+          เพิ่มสินค้า
+        </button>
+      </div>
+      <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel">เพิ่มสินค้า</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            <form padding class="forms">
+              <div class="fileUpload blue-btn btn width100 form-group">
+                เพิ่มรูปภาพ
+                <input class="uploadlogo" type="file" name="file" [(ngModel)]="photo" (change)="upload($event)">
+              </div>
+              <img [src]="files" *ngIf="files" style="max-width:220px;" height="200px;">
+              <br>
+              <br>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                <div class="col-8">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                <div class="col-8">
+                  <input type="text" class="form-control" name="properties" [(ngModel)]="properties">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                <div class="col-8">
+                  <input type="number" class="form-control" name="price" [(ngModel)]="price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                <div class="col-8">
+                  <input type="number" class="form-control" name="num" [(ngModel)]="num">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div *ngIf="name!=null">
+                  <input type="reset" value="รีเช็ต!">
+                </div>
+                <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-info btn-md" data-dismiss="modal" (click)="addpro()">บันทึก</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col" id="navbarColor01">
+        <ul class="navbar-nav">
+          <i class="fa fa-search">
+            <input class="input" type="text" placeholder="ค้นหาผัก..." (keydown)="searchs($event)">
+          </i>
+        </ul>
+      </div>
+    </nav>
+
+    <table class="table table-sm table-inverse">
+      <br>
+      <tr *ngFor="let paks of p">
+        <td>
+          <img src="{{paks?.photo}}" width="150px;" height="120px;">
+        </td>
+        <td>
+          <h4>{{paks?.name}}</h4>
+          ราคา: {{paks?.price}} บาท/กิโลกรัม
+          <br> สรรพคุณ: {{paks?.properties}}
+          <br> มีสินค้าอยู่: {{paks?.num}} กิโลกรัม
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal2" (click)="editpak(paks.$key,paks)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="Modal2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                
+                <form padding class="forms">
+
+                  <img [src]="item.photo" style="max-width:220px;" height="200px;">
+                  <br>
+                  <br>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="name" [(ngModel)]="item.name">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="properties" [(ngModel)]="item.properties">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="price" [(ngModel)]="item.price">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="num" [(ngModel)]="item.num">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                    <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveedit(item)">บันทึก</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" id="close" (click)="remove(paks)">
+            <i class="fa fa-close" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  
+  <div *ngIf="p?.length<1" class="imgpro">
+    <table class="table table-sm table-inverse" id="pro">
+      <tr *ngFor="let paks of prod | async">
+        <td>
+          <img src="{{paks?.photo}}" width="150px;" height="120px;">
+        </td>
+        <td>
+          <h4>{{paks?.name}}</h4>
+          ราคา: {{paks?.price}} บาท/กิโลกรัม
+          <br> สรรพคุณ: {{paks?.properties}}
+          <br> มีสินค้าอยู่: {{paks?.num}} กิโลกรัม
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal3" (click)="editpak(paks.$key,paks)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="Modal3" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                
+                <form padding class="forms">
+
+                  <img [src]="item.photo" style="max-width:220px;" height="200px;">
+                  <br>
+                  <br>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="name" [(ngModel)]="item.name">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="properties" [(ngModel)]="item.properties">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="price" [(ngModel)]="item.price">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="num" [(ngModel)]="item.num">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                    <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveedit(item)">บันทึก</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" id="close" (click)="remove(paks)">
+            <i class="fa fa-close" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+    
+    </table>
+  </div>
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+  </div>
+  <app-loading-spinner *ngIf="!finished"></app-loading-spinner>
+
+  <div *ngIf="finished">
+    
+  </div>
+
+  </div> 
+  <!--//////////////////////////////ปุ๋ย///////////////////////////////-->
+  <div class="tab-pane" id="puy" role="tabpanel">
+    <!--  //////////////////////////////////////////////////////////////// -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="col">
+          <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modal4">
+            เพิ่มสินค้า
+          </button>
+        </div>
+        <div class="modal fade" id="Modal4" tabindex="-1" role="dialog" aria-labelledby="Modal4" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">เพิ่มสินค้า</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+              <form padding class="forms">
+                <div class="fileUpload blue-btn btn width100 form-group">
+                  เพิ่มรูปภาพ
+                  <input class="uploadlogo" type="file" name="file" [(ngModel)]="photo" (change)="upload2($event)">
+                </div>
+                <img [src]="files" *ngIf="files" style="max-width:220px;" height="200px;">
+                <br>
+                <br>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" name="name" [(ngModel)]="name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                  <div class="col-8">
+                    <input type="text" class="form-control" name="properties" [(ngModel)]="properties">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                  <div class="col-8">
+                    <input type="number" class="form-control" name="price" [(ngModel)]="price">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                  <div class="col-8">
+                    <input type="number" class="form-control" name="num" [(ngModel)]="num">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div *ngIf="name!=null">
+                    <input type="reset" value="รีเช็ต!">
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                  <button type="button" class="btn btn-info btn-md" data-dismiss="modal" (click)="addpropuy()">บันทึก</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col" id="navbarColor01">
+          <ul class="navbar-nav">
+            <i class="fa fa-search" aria-hidden="true">
+              <input class="input" type="text" placeholder="ค้นหาปุ๋ย..." (keydown)="searchs2($event)">
+            </i>
+          </ul>
+        </div>
+    </nav>
+
+    <table class="table table-sm table-inverse">
+        <br>
+        <tr *ngFor="let puys of p2">
+          <td>
+            <img src="{{puys?.photo}}" width="150px;" height="120px;">
+          </td>
+          <td>
+            <h4>{{puys?.name}}</h4>
+            ราคา: {{puys?.price}} บาท/กิโลกรัม
+            <br> สรรพคุณ: {{puys?.properties}}
+            <br> มีสินค้าอยู่: {{puys?.num}} กิโลกรัม
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal5" (click)="editpuy(puys.$key,puys)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <div class="modal fade" id="Modal5" tabindex="-1" role="dialog" aria-labelledby="Modal5" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  
+                  <form padding class="forms">
+  
+                    <img [src]="item2.photo" style="max-width:220px;" height="200px;">
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="name" [(ngModel)]="item2.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="properties" [(ngModel)]="item2.properties">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="price" [(ngModel)]="item2.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="num" [(ngModel)]="item2.num">
+                      </div>
+                    </div>
+  
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                      <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveedit(item2)">บันทึก</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" id="close" (click)="removepuy(puys)">
+              <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+    </table>
+
+    <div *ngIf="p2?.length<1" class="imgpro">
+      <table class="table table-sm table-inverse" id="pro">
+        <tr *ngFor="let puys of prodpuy | async">
+          <td>
+            <img src="{{puys?.photo}}" width="150px;" height="120px;">
+          </td>
+          <td>
+            <h4>{{puys?.name}}</h4>
+            ราคา: {{puys?.price}} บาท/กิโลกรัม
+            <br> สรรพคุณ: {{puys?.properties}}
+            <br> มีสินค้าอยู่: {{puys?.num}} กิโลกรัม
+          </td>
+          <td>
+
+            <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal6" (click)="editpuy(puys.$key,puys)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <div class="modal fade" id="Modal6" tabindex="-1" role="dialog" aria-labelledby="Modal6" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  
+                  <form padding class="forms">
+
+                    <img [src]="item2.photo" style="max-width:220px;" height="200px;">
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="name" [(ngModel)]="item2.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="properties" [(ngModel)]="item2.properties">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="price" [(ngModel)]="item2.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="num" [(ngModel)]="item2.num">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                      <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveeditpuy(item2)">บันทึก</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" id="close" (click)="removepuy(puys)">
+              <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+    </div>
+    <app-loading-spinner *ngIf="!finished"></app-loading-spinner>
+  
+    <div *ngIf="finished">
+      
+    </div>
+  </div> 
+  <!--/////////////////อื่นๆ/////////////////-->
+  <div class="tab-pane" id="other" role="tabpanel">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+      <div class="col">
+        <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#Modal7">
+          เพิ่มสินค้า
+        </button>
+      </div>
+      <div class="modal fade" id="Modal7" tabindex="-1" role="dialog" aria-labelledby="Modal7" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalLabel">เพิ่มสินค้า</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            <form padding class="forms">
+              <div class="fileUpload blue-btn btn width100 form-group">
+                เพิ่มรูปภาพ
+                <input class="uploadlogo" type="file" name="file" [(ngModel)]="photo" (change)="upload3($event)">
+              </div>
+              <img [src]="files" *ngIf="files" style="max-width:220px;" height="200px;">
+              <br>
+              <br>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                <div class="col-8">
+                  <input type="text" class="form-control" name="name" [(ngModel)]="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                <div class="col-8">
+                  <input type="text" class="form-control" name="properties" [(ngModel)]="properties">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                <div class="col-8">
+                  <input type="number" class="form-control" name="price" [(ngModel)]="price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                <div class="col-8">
+                  <input type="number" class="form-control" name="num" [(ngModel)]="num">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div *ngIf="name!=null">
+                  <input type="reset" value="รีเช็ต!">
+                </div>
+                <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-info btn-md" data-dismiss="modal" (click)="addproother()">บันทึก</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col" id="navbarColor01">
+        <ul class="navbar-nav">
+          <i class="fa fa-search">
+            <input class="input" type="text" placeholder="ค้นหาสินค้าอื่นๆ(เมล็ด ต้นกล้า)..." (keydown)="searchs($event)">
+          </i>
+        </ul>
+      </div>
+    </nav>
+    <table class="table table-sm table-inverse">
+      <br>
+        <tr *ngFor="let other of p3">
+          <td>
+            <img src="{{other?.photo}}" width="150px;" height="120px;">
+          </td>
+          <td>
+            <h4>{{other?.name}}</h4>
+            ราคา: {{other?.price}} บาท/กิโลกรัม
+            <br> สรรพคุณ: {{other?.properties}}
+            <br> มีสินค้าอยู่: {{other?.num}} กิโลกรัม
+          </td>
+          <td>
+  
+            <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal8" (click)="editother(other.$key,other)">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <div class="modal fade" id="Modal8" tabindex="-1" role="dialog" aria-labelledby="Modal8" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  
+                  <form padding class="forms">
+  
+                    <img [src]="item3.photo" style="max-width:220px;" height="200px;">
+                    <br>
+                    <br>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="name" [(ngModel)]="item3.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                      <div class="col-8">
+                        <input type="text" class="form-control" name="properties" [(ngModel)]="item3.properties">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="price" [(ngModel)]="item3.price">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                      <div class="col-8">
+                        <input type="number" class="form-control" name="num" [(ngModel)]="item3.num">
+                      </div>
+                    </div>
+  
+  
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                      <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveeditother(item3)">บันทึก</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-danger" id="close" (click)="removeother(other)">
+              <i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+          </td>
+  
+        </tr>
+    </table>
+
+    <div *ngIf="p3?.length<1" class="imgpro">
+    <table class="table table-sm table-inverse">
+      <tr *ngFor="let other of prodother | async">
+        <td>
+          <img src="{{other?.photo}}" width="150px;" height="120px;">
+        </td>
+        <td>
+          <h4>{{other?.name}}</h4>
+          ราคา: {{other?.price}} บาท/กิโลกรัม
+          <br> สรรพคุณ: {{other?.properties}}
+          <br> มีสินค้าอยู่: {{other?.num}} กิโลกรัม
+        </td>
+        <td>
+
+          <button type="button" class="btn btn-outline-warning btn-md" data-toggle="modal" data-target="#Modal9" (click)="editother(other.$key,other)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <div class="modal fade" id="Modal9" tabindex="-1" role="dialog" aria-labelledby="Modal9" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalLabel">แก้ไขสินค้า</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                
+                <form padding class="forms">
+
+                  <img [src]="item3.photo" style="max-width:220px;" height="200px;">
+                  <br>
+                  <br>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ชื่อ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="name" [(ngModel)]="item3.name">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">สรรพคุณ</label>
+                    <div class="col-8">
+                      <input type="text" class="form-control" name="properties" [(ngModel)]="item3.properties">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">ราคา</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="price" [(ngModel)]="item3.price">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-4 col-form-label">จำนวนสินค้า</label>
+                    <div class="col-8">
+                      <input type="number" class="form-control" name="num" [(ngModel)]="item3.num">
+                    </div>
+                  </div>
+
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">ยกเลิก</button>
+                    <button type="reset" class="btn btn-info btn-md" data-dismiss="modal" (click)="saveeditother(item3)">บันทึก</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" id="close" (click)="removeother(other)">
+            <i class="fa fa-close" aria-hidden="true"></i>
+          </button>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+  </div>
+  <app-loading-spinner *ngIf="!finished"></app-loading-spinner>
+
+  <div *ngIf="finished">
+    
+  </div>
+  </div>
+</div> 

@@ -1,0 +1,319 @@
+<app-navbar></app-navbar>
+<div id="accordion" role="tablist" aria-multiselectable="true" class="container">
+    <div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingTwo">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)="monthOne(0)">
+                                มกราคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="card-block" *ngFor="let lis of data">
+
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(0, lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="monthOne(1)">
+                                กุมภาพันธ์
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                            {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(1,lis)" >
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico" >
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree2">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2" (click)="monthOne(2)">
+                                มีนาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree2" class="collapse" role="tabpanel" aria-labelledby="headingThree2">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(2,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree3">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3" (click)="monthOne(3)">
+                                เมษายน
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(3,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4" (click)="monthOne(4)">
+                                พฤษภาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(4,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5" (click)="monthOne(5)">
+                                มิถุนายน
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree5" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(5,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree23">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6" (click)="monthOne(6)">
+                                กรกฎาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree6" class="collapse" role="tabpanel" aria-labelledby="headingThree23">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(6,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7" (click)="monthOne(7)">
+                                สิงหาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree7" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(7,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8" (click)="monthOne(8)">
+                                กันยายน
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree8" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(8,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree9" aria-expanded="false" aria-controls="collapseThree9" (click)="monthOne(9)">
+                                ตุลาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree9" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(9,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree10" aria-expanded="false" aria-controls="collapseThree10" (click)="monthOne(10)">
+                                พฤศจิกายน
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree10" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(10,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree11" aria-expanded="false" aria-controls="collapseThree11" (click)="monthOne(11)">
+                                ธันวาคม
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree11" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-block" *ngFor="let lis of data">
+                            <div *ngIf="lis.menus" class="container">
+                                {{lis.dateyear}}
+                                <button type="button" class="btn btn-success" (click)="exportData(11,lis)">
+                                    <img class="excel" src="http://www.iconarchive.com/download/i98359/dakirby309/simply-styled/Microsoft-Excel-2013.ico">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!-- <div class="container">
+    <div role="tebpanel" class="tab-pane active" id="overview">
+        <div style="height:350px; overflow:auto;">
+            <table cellspacing="0" class="c">
+                <div class="form-group">
+                    <tr>
+                        
+                        <th>เดือน</th>
+                        <th>ปี</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select id="day" class="form-control" [(ngModel)]="month1">
+                                <option value="มกราคม">มกราคม</option>
+                                <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                            </select>
+                        </td>
+                   
+                        <td>
+                            <select class="form-control" [(ngModel)]="year1">
+                                <option value="2018">2018</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-info" (click)="showw()"><i class="fa">&#xf002;</i></button>
+                        </td>
+                    </tr>
+                </div>
+            </table>
+
+            <div class="normal" id="print-section">
+                <table id="example" class="display nowrap" cellspacing="0" width="100%">
+                    <tr>
+                        <th width="100px">เดือน</th>
+                        <th width="100px">ปี</th>
+                    </tr>
+                    <tbody *ngFor="let lis of ret1">
+                        <tr>
+                            <td>{{lis.dateday}} </td>
+                            
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div> --> 
